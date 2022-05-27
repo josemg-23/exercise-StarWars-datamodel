@@ -16,11 +16,16 @@ class Person(Base):
     name = Column(String(250), nullable=False)
     height = Column(Integer, nullable=False)
     skin_color= Column(Integer, nullable=False)
+    planet = Column(String(250), ForeignKey('planet.id') nullable=False)
     planet = relationship (Planet)
     
     def to_dict(self):
         return{
             "id" : self.id,
+            "name": self.name,
+            "height": self.height,
+            "skin_color": self.skin_color,
+            "planet": self.planet
         }
 
 class Planet(Base):
@@ -35,6 +40,9 @@ class Planet(Base):
     def to_dict(self):
         return{
             "id" : self.id,
+            "name": self.name,
+            "area": self.area,
+            "weather": self.weather
         }
 
     def to_dict(self):
